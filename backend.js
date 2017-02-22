@@ -99,7 +99,6 @@ app.get('/userLogin', function(req, res) {
 
       })
         .catch(function(err){
-          console.log('wtf', err.stack);
           res.status(400);
           res.send({error: err.message});
         });

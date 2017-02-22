@@ -1,15 +1,5 @@
 #Twit: An Exciting Twitter Clone!
 
-##Contents:
-
-####Overview
-
-####Technologies
-
-####Contributors
-
-####Example Code
-
 ##Overview:
 Full stack project intended to implement MongoDB/Mongoose with NodeJS with AngularJS front end experience.  Twit is a clone of Twitter, and our intent was to implement as much basic functionality as possible in the alloted time for development.
 
@@ -50,7 +40,54 @@ Modules:
  
  Logout
   
-####MongoDB Database
+####Example Code
+
+Tweet Model:
+```
+const Tweet = mongoose.model('Tweet', {
+  text: String,
+  date: Date,
+  user_id: String,
+  name: String,
+  avatar_url: String
+});
+```
+
+Login Handler:
+```
+app.get('/userLogin', function(req, res) {
+  var user_id = req.query.user_id;
+  var password = req.query.password;
+  var loginInfo = [];
+  console.log(user_id);
+  console.log(password);
+  User.findById(user_id)
+    .then(function(user) {
+      console.log(user);
+      bcrypt.compare(password, user.password)
+      .then(function(success) {
+        console.log(success);
+        if (success){
+         return success;
+        }
+        else{
+          return 401;
+        }
+      })
+      // create token, send over
+      .then(function(){
+        var token = uuidV4();
+        loginInfo.push(user_id);
+        loginInfo.push(token);
+          res.send(loginInfo);
+      });
+      })
+        .catch(function(err){
+          res.status(400);
+          res.send({error: err.message});
+        });
+      });
+```
 
 
 ###Contributors:
