@@ -1,7 +1,5 @@
 #Twit: An Exciting Twitter Clone!
 
-Website: (http://52.40.91.213:3010/#!/)
-
 ##Contents:
 
 ####Overview
@@ -52,7 +50,7 @@ Modules:
  
  Logout
   
-####MongDB Database
+####MongoDB Database
 
 
 ###Contributors:
